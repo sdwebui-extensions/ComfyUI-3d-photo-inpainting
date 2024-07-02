@@ -23,12 +23,12 @@ if os.path.isfile("%s/3dphoto.pth" % (site_packages_root)):
     + "\n if meet No module named 'MiDas' error,please restart comfyui")
 
 
-from huggingface_hub import snapshot_download
+# from huggingface_hub import snapshot_download
 
-if not os.path.isfile(os.path.join(now_dir,"checkpoints","model-f46da743.pt")):
-    snapshot_download(repo_id="camenduru/3d-photo-inpainting",local_dir=os.path.join(now_dir,"checkpoints"))
-else:
-    print("3d-photo-inpainting use cache models,make sure your 'checkpoints' complete")
+# if not os.path.isfile(os.path.join(now_dir,"checkpoints","model-f46da743.pt")):
+#     snapshot_download(repo_id="camenduru/3d-photo-inpainting",local_dir=os.path.join(now_dir,"checkpoints"))
+# else:
+#     print("3d-photo-inpainting use cache models,make sure your 'checkpoints' complete")
     
 
 from .nodes import TreeDNode,LoadImagePath,PreViewVideo

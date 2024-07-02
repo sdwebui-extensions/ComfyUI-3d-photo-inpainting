@@ -5,11 +5,12 @@ import yaml
 input_dir = folder_paths.get_input_directory()
 now_dir = os.path.dirname(os.path.abspath(__file__))
 output_dir = folder_paths.get_output_directory()
-ckpt_dir = os.path.join(now_dir,"checkpoints")
+ckpt_dir = os.path.join(folder_paths.models_dir,"3d-photo-inpainting")
 threed_dir = os.path.join(output_dir,"3D_Photo")
 depth_dir = os.path.join(threed_dir,"depth")
 mesh_dir = os.path.join(threed_dir,"mesh")
 video_dir = os.path.join(threed_dir,"video")
+cache_dir = "/stable-diffusion-cache/models/3d-photo-inpainting"
 
 class TreeDNode:
     @classmethod
@@ -64,6 +65,8 @@ class TreeDNode:
         default_yaml_path = os.path.join(now_dir,"3dphoto","argument.yml")
         with open(default_yaml_path, 'r', encoding="utf-8") as f:
             yaml_data = yaml.load(f.read(),Loader=yaml.SafeLoader)
+        if os.path.exists(cache_dir):
+            ckpt_dir = cache_dir
         yaml_data['depth_edge_model_ckpt'] = os.path.join(ckpt_dir,"edge-model.pth")
         yaml_data['depth_feat_model_ckpt'] = os.path.join(ckpt_dir,"depth-model.pth")
         yaml_data['rgb_feat_model_ckpt'] = os.path.join(ckpt_dir,"color-model.pth")
